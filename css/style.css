@@ -1,0 +1,49 @@
+nav{
+
+background-color: rgba(13, 173, 13, 0.76);
+margin-bottom: 5px;
+
+}
+a{
+    color: black;
+}
+a:link:visited:active{
+
+    text-decoration: none;
+
+
+}
+a:hover{
+
+    color: rgba(13, 173, 13, 0.76);
+}
+#username{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 10px;
+    margin-left: auto;
+}
+#status{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 10px;
+    margin-left: auto;
+}
+#profile_icon{
+
+    border-radius: 100%;
+    height: 50px;
+    width: auto;
+}
+.col-sm-4{
+    float: left;
+    margin-bottom: 5px;
+}
+.col-sm-12{
+
+    margin-bottom: 10px;
+}
+.usersta{
+    flex-wrap: wrap;
+    float: right;
+}
