@@ -16,48 +16,75 @@
 </head>
 
 <body>
-<nav class="nav justify-content-center">
-	<img src="" href="index.html">
+	<nav class="navbar navbar-expand-sm navbar-light">
+		<a class="navbar-brand" href="#"><img class="logosite" src="/imgs/logo.png"></a>
+		<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+			aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavId">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Conta</a>
+				</li>
 
-	<a class="nav-link" href="index.html">Conta</a>
-  <a class="nav-link" href="#">Guias</a>
-  <a class="nav-link" href="#">Tuturial</a>
-  <div class="usersta">
-  <p class="nav-link" id="username">aaaaaaaa</p>
-  <p class="nav-link" id="status">online</p>
-</div>
-  <img id="profile_icon" src=""></nav>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
 
-<div class="container">
-	<div class="col-sm-6">
-	<input id="user" value="username"></input><br>
-	<button id="butao">pesquisar</button>
-</div>
-<div class="col-sm-4">
-<h1>Friend list</h1>
-<h6>Online</h6>
-<p id="Pon"></p>
-<h6>Offline</h6>
-<p id="Poff"></p>
-</div>
-<div class="col-sm-4">
-	<h1>Achievments</h1>
-	<p id="nomeachiev">a</p>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Guias</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Tuturial</a>
+				</li>
+
+				<li class="nav-item">
+					<img id="profile_icon" src="/imgs/logo.png">
+
+				</li>
+				<li class="nav-item">
+					<p class="nav-link" id="status"></p>
+				</li>
+
+			</ul>
+			<p class="nav-link" id="teste"></p>
+			<input id="user" value="username">
+			<button id="butao">Pesquisar</button>
+
+		</div>
+	</nav>
+
+
+	<div class="container">
+
+		<div class="col-sm-4">
+			<h1>Friend list</h1>
+			<h6>Online</h6>
+			<p id="Pon"></p>
+			<h6>Offline</h6>
+			<p id="Poff"></p>
+		</div>
+		<div class="col-sm-4">
+			<h1>Achievments</h1>
+			<p id="nomeachiev">a</p>
+		</div>
+		<div class="col-sm-4">
+			<h1> Atividade Recente</h1>
+			<p id="jogorec"></p>
+			<p id="atvjogo"></p>
+		</div>
+
+
+
 	</div>
-	<div class="col-sm-4">
-	<h1> Atividade Recente</h1>
-	</div>
-
-	
-	
-</div>
 
 
-<footer>
+	<footer>
 
 
-	
-</footer>
+
+	</footer>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -69,8 +96,8 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 		</script>
 	<script type="text/javascript" src="/js/main.js"></script>
-				<!-- css -->
-				<link rel="stylesheet" href="/css/style.css">
+	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
 </body>
 
 

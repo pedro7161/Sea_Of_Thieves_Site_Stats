@@ -4,13 +4,13 @@ window.onload = function () {
 
     var baseurl = "https://xapi.us/v2/"
     var input = document.getElementById("user")
-    var endpoints = ["/presence", "/activity", "/friends", "/achievements/1717113201"]
+    var endpoints = ["/presence", "/activity", "/friends"]
     var butao = document.getElementById("butao")
     var bluidEndpoints = []
     var objeto = []
-
+    // , , "/achievements/1717113201"
     butao.onclick = async () => {
-        document.getElementById("username").innerHTML = document.getElementById("user").value
+
         // receber o id do utelizador
         const xuid = await httprequest("xuid/" + input.value)
         // contruir os url
@@ -24,10 +24,10 @@ window.onload = function () {
             var partido = await partirobj(end)
 
             console.log("array com as informaçoes da api", partido)
-            inseridor(partido)
+
 
         }
-
+        inseridor(partido)
 
     };
 
@@ -75,7 +75,7 @@ window.onload = function () {
         console.log("lista toda: ", achiev)
         // inserir os valores da api na lista
         objeto.push(achiev)
-    
+
 
 
         // devolver a lista
@@ -91,16 +91,48 @@ window.onload = function () {
     //inserir as informaçoes no html
     function inseridor(partido) {
 
+        document.getElementById("status").innerHTML = partido[0]['state']
 
 
-        console.log("status: ", partido[0]["state"])
-        var location = [partido[0]['state'], partido[0]['xuid']]
-        var ide = ["status", "nomeachiev"]
+        document.getElementById("jogorec").innerHTML = "A jogar: " + partido[0]['devices'][0]['titles'][0]['name']
+        if (document.getElementById("jogorec").innerHTML = partido[0]['devices'][0]['titles'][0]['name'] == "Online") {
+            document.getElementById("jogorec").innerHTML = "Nao esta a jogar"
+        }
 
-        location.forEach(element => {
-            document.getElementById(ide[0]).innerHTML = element
-            document.getElementById(ide[1]).innerHTML = element
+        document.getElementById("profile_icon").src = partido[1]['activityItems'][0]['userImageUriMd']
+
+        partido[1]['activityItems'].forEach(i => {
+
+
+            document.getElementById("teste").innerHTML = i['achievementName']
         });
+
+
+
+
+        if (partido[0]['devices'][0]['titles'][0]['state'] == "Active") {
+            document.getElementById("atvjogo").innerHTML = "Está a jogar"
+        }
+        else {
+            document.getElementById("atvjogo").innerHTML = "Nao está a jogar"
+        }
+
+        if (partido[0]['state'] == "Online") {
+            document.getElementById("status").style.color = "green";
+        }
+        else {
+            document.getElementById("status").style.color = "red";
+        }
+
+
+        // console.log("status: ", partido[0]["state"])
+        // var location = [partido[0]['state'], partido[0]['xuid']]
+        // var ide = ["status", "nomeachiev"]
+
+        // location.forEach(element => {
+        //     document.getElementById(ide[0]).innerHTML = element
+        //     document.getElementById(ide[1]).innerHTML = element
+        // });
 
 
 

@@ -1,3 +1,5 @@
+
+
 nav{
 
 background-color: rgba(13, 173, 13, 0.76);
@@ -44,21 +46,10 @@ a:hover{
     margin-right: auto;
     margin-bottom: 10px;
 }
-.usersta{
-    flex-wrap: wrap;
-    float: right;
-}
-#butao#user{
-margin: auto;
 
-}
-#butao{
 
-    background-color: rgba(13, 173, 13, 0.76);
-  border-radius: 40%;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
+
+.logosite{
+    height: 50px;
+    width: auto;
 }
