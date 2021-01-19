@@ -1,8 +1,17 @@
-
+body{
+  background-color: bisque;
+font-style: italic;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.achiev_img
+{
+    width: 300px;
+    height: auto;
+}
 
 nav{
 
-background-color: rgba(13, 173, 13, 0.76);
+background-color: RGB(136, 176, 75);
 margin-bottom: 5px;
 
 }
@@ -52,4 +61,10 @@ a:hover{
 .logosite{
     height: 50px;
     width: auto;
+}
+.achivsiz{
+
+font-size: 14px;
+
+
 }

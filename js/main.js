@@ -4,11 +4,11 @@ window.onload = function () {
 
     var baseurl = "https://xapi.us/v2/"
     var input = document.getElementById("user")
-    var endpoints = ["/presence", "/activity", "/friends"]
+    var endpoints = ["/presence", "/activity", "/friends", "/achievements/1717113201"]
     var butao = document.getElementById("butao")
     var bluidEndpoints = []
     var objeto = []
-    // , , "/achievements/1717113201"
+    // , , ""
     butao.onclick = async () => {
 
         // receber o id do utelizador
@@ -93,28 +93,56 @@ window.onload = function () {
 
         document.getElementById("status").innerHTML = partido[0]['state']
 
+        try {
 
-        document.getElementById("jogorec").innerHTML = "A jogar: " + partido[0]['devices'][0]['titles'][0]['name']
-        if (document.getElementById("jogorec").innerHTML = partido[0]['devices'][0]['titles'][0]['name'] == "Online") {
-            document.getElementById("jogorec").innerHTML = "Nao esta a jogar"
+            if (document.getElementById("jogorec").innerHTML = partido[0]['devices'][0]['titles'][0]['name'] == "Online") {
+                document.getElementById("jogorec").innerHTML = "Nao esta a jogar"
+            }
+            else
+                document.getElementById("jogorec").innerHTML = "A jogar: " + partido[0]['devices'][0]['titles'][0]['name']
+        }
+        catch {
+            try {
+                document.getElementById("jogorec").innerHTML = "Ultima vez visto: " + partido[0]['lastSeen']['titleName']
+            }
+            catch {
+                console.log("erro")
+            }
+
+
         }
 
         document.getElementById("profile_icon").src = partido[1]['activityItems'][0]['userImageUriMd']
+        if (partido[1]['activityItems'] == 0) {
+            console.log("nao tem")
+        }
+        console.log(partido[3])
+        partido[3].forEach(element => {
 
-        partido[1]['activityItems'].forEach(i => {
+            if (element["progressState"] == "Achieved") {
+                addRow(element)
+            }
+            else {
+                console.log("nao tem")
+            }
 
 
-            document.getElementById("teste").innerHTML = i['achievementName']
+
         });
 
 
+        try {
 
-
-        if (partido[0]['devices'][0]['titles'][0]['state'] == "Active") {
-            document.getElementById("atvjogo").innerHTML = "Está a jogar"
+            if (partido[0]['devices'][0]['titles'][0]['state'] == "Active") {
+                document.getElementById("atvjogo").innerHTML = "Está a jogar"
+            }
+            else {
+                document.getElementById("atvjogo").innerHTML = "Nao está a jogar"
+            }
         }
-        else {
+        catch {
             document.getElementById("atvjogo").innerHTML = "Nao está a jogar"
+
         }
 
         if (partido[0]['state'] == "Online") {
@@ -138,6 +166,22 @@ window.onload = function () {
 
 
     }
+    function addRow(lista) {
+        const div = document.createElement('div');
+
+        div.className = 'achievements';
+
+        div.innerHTML = "<br>" + "<h3>" + lista["name"] + "</h3>" +
+            "<p class='achivsiz'>" + lista["progressState"] + "</p>" +
+            "<p class='achivsiz'>" + lista["description"] + "</p>" +
+            "<p class='achivsiz'>" + lista["progression"]["timeUnlocked"] + "</p>" +
+            "<p class='achivsiz'> Numero de pessoas que tem: " + lista["rarity"]["currentPercentage"] + "%</p>" +
+            "<img class='achiev_img' src='" + lista["mediaAssets"][0]["url"] + "'> "
+            ;
+
+        document.getElementById('content').appendChild(div);
+    }
+
 
 
 
