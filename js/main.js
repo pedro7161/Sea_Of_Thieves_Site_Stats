@@ -8,7 +8,37 @@ window.onload = function () {
     var butao = document.getElementById("butao")
     var bluidEndpoints = []
     var objeto = []
-    // , , ""
+
+    $("#esconder").click(function () {
+
+        if (document.getElementById("Friendlist").style.display == "none") {
+            document.getElementById("Friendlist").style.display = "block";
+        }
+        else {
+            document.getElementById("Friendlist").style.display = "none";
+        }
+    }
+    );
+    $("#esconder2").click(function () {
+
+        if (document.getElementById("content").style.display == "none") {
+            document.getElementById("content").style.display = "block";
+        }
+        else {
+            document.getElementById("content").style.display = "none";
+        }
+    }
+    );
+    $("#esconder3").click(function () {
+
+        if (document.getElementById("desaparece3").style.display == "none") {
+            document.getElementById("desaparece3").style.display = "block";
+        }
+        else {
+            document.getElementById("desaparece3").style.display = "none";
+        }
+    }
+    );
     butao.onclick = async () => {
 
         // receber o id do utelizador
@@ -129,7 +159,9 @@ window.onload = function () {
 
 
         });
-
+        partido[2].forEach(element => {
+            addRowF(element)
+        });
 
         try {
 
@@ -180,6 +212,17 @@ window.onload = function () {
             ;
 
         document.getElementById('content').appendChild(div);
+
+    }
+    function addRowF(lista) {
+
+        const div2 = document.createElement('div');
+
+        div2.className = 'FriendL';
+
+        div2.innerHTML = "<p class='achivsiz'>" + lista["Gamertag"] + "</p>" + "<img class='achiev_img' src='" + lista["AppDisplayPicRaw"] + "'> ";
+
+        document.getElementById('Friendlist').appendChild(div2);
     }
 
 
