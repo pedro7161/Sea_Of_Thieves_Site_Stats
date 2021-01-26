@@ -2,15 +2,16 @@
 
 window.onload = function () {
 
-    var baseurl = "https://xapi.us/v2/"
-    var input = document.getElementById("user")
-    var endpoints = ["/presence", "/activity", "/friends", "/achievements/1717113201"]
-    var butao = document.getElementById("butao")
-    var bluidEndpoints = []
-    var objeto = []
+    var baseurl = "https://xapi.us/v2/"//caso a api mude apenas basta alteraar aqui o url iniçial para nao ter que se mudar no codigo todo
+    var input = document.getElementById("user")//buscar o que nome que introduziaram no html
+    var endpoints = ["/presence", "/activity", "/friends", "/achievements/1717113201"]//fazer o programa de maneira a que nao seja preciso alterar milhares de linhas ,basta apenas juntar ha lista
+    var butao = document.getElementById("butao")//para saber qual dos butoes (vai/tem que) ser clickado
+    var bluidEndpoints = [] //lista para guardar os links completos
+    var objeto = []//ajudar a organizar a lista com as informaçoes todas da api
 
+    //jquery para nos butoes(setas) esconder a lista caso seja muito grande para dar scroll no telemovel
     $("#esconder").click(function () {
-
+        //se o id for frienlist e o display=none no css alterar para display block e vice versa
         if (document.getElementById("Friendlist").style.display == "none") {
             document.getElementById("Friendlist").style.display = "block";
         }
@@ -20,7 +21,7 @@ window.onload = function () {
     }
     );
     $("#esconder2").click(function () {
-
+        //se o id for content e o display=none no css alterar para display block e vice versa
         if (document.getElementById("content").style.display == "none") {
             document.getElementById("content").style.display = "block";
         }
@@ -30,7 +31,7 @@ window.onload = function () {
     }
     );
     $("#esconder3").click(function () {
-
+        //se o id for desaparece3 e o display=none no css alterar para display block e vice versa
         if (document.getElementById("desaparece3").style.display == "none") {
             document.getElementById("desaparece3").style.display = "block";
         }
@@ -39,6 +40,7 @@ window.onload = function () {
         }
     }
     );
+    //quando clicarem no botao começar a pesquisa do xuid do utelizador para se conseguir ir buscar o resto
     butao.onclick = async () => {
 
         // receber o id do utelizador
@@ -68,9 +70,10 @@ window.onload = function () {
     //       console.log(end)
     // };
 
+    //chave da api usada para os requests
     async function httprequest(endpoint) {
 
-
+        //contrutor de url onde automaticamente pesquisa por todos os endpoinsts metidos na lista do url
         const resposta = await fetch(baseurl + endpoint, {
 
             method: 'GET',
@@ -80,9 +83,9 @@ window.onload = function () {
         });
 
 
-
+        // esperar que a api apanhe tudo
         const resp = await resposta.json();
-
+        //devoolver a resposta
         return resp
     };
 
@@ -120,11 +123,11 @@ window.onload = function () {
 
     //inserir as informaçoes no html
     function inseridor(partido) {
-
+        //verificaçao se o utilizador está online ou ofline
         document.getElementById("status").innerHTML = partido[0]['state']
-
+        //devido há api mudar o devices para lastseen quando nao encontra nada adiçionei um try catch para apanhar pelo last seen
         try {
-
+            //verificaçao se o utilizador está a jogar
             if (document.getElementById("jogorec").innerHTML = partido[0]['devices'][0]['titles'][0]['name'] == "Online") {
                 document.getElementById("jogorec").innerHTML = "Nao esta a jogar"
             }
@@ -132,6 +135,7 @@ window.onload = function () {
                 document.getElementById("jogorec").innerHTML = "A jogar: " + partido[0]['devices'][0]['titles'][0]['name']
         }
         catch {
+            //verificaçao onde o utelizador fui visto pela ultima ves
             try {
                 document.getElementById("jogorec").innerHTML = "Ultima vez visto: " + partido[0]['lastSeen']['titleName']
             }
@@ -141,12 +145,15 @@ window.onload = function () {
 
 
         }
-
+        //adiçionar o icon da conta no site
         document.getElementById("profile_icon").src = partido[1]['activityItems'][0]['userImageUriMd']
+        //caso nao encontro atividade recente para nao dar erro
         if (partido[1]['activityItems'] == 0) {
             console.log("nao tem")
         }
+        //verificar se está a receber o correto na lista
         console.log(partido[3])
+        //passar por todos os achievements na lista e verificar quais o utelizador tem, os que tiver entra-se na funçao addrow na qual adiciona ao html  o seu progresso
         partido[3].forEach(element => {
 
             if (element["progressState"] == "Achieved") {
@@ -184,7 +191,7 @@ window.onload = function () {
             document.getElementById("status").style.color = "red";
         }
 
-
+        // para futuro uso onde deixa o programa mais automatico
         // console.log("status: ", partido[0]["state"])
         // var location = [partido[0]['state'], partido[0]['xuid']]
         // var ide = ["status", "nomeachiev"]
@@ -198,11 +205,12 @@ window.onload = function () {
 
 
     }
+    //insere o html dos achievments
     function addRow(lista) {
-        const div = document.createElement('div');
+        const div = document.createElement('div');//criaçao da tag div numa variavel
 
-        div.className = 'achievements';
-
+        div.className = 'achievements';//adiçao de class á varivel que é uma div
+        //inserimento do html dentro da div criada
         div.innerHTML = "<br>" + "<h3>" + lista["name"] + "</h3>" +
             "<p class='achivsiz'>" + lista["progressState"] + "</p>" +
             "<p class='achivsiz'>" + lista["description"] + "</p>" +
@@ -210,18 +218,19 @@ window.onload = function () {
             "<p class='achivsiz'> Numero de pessoas que tem: " + lista["rarity"]["currentPercentage"] + "%</p>" +
             "<img class='achiev_img' src='" + lista["mediaAssets"][0]["url"] + "'> "
             ;
-
+        //junçao da div criada em cima com o i id criado no ficheiro do html
         document.getElementById('content').appendChild(div);
 
     }
+    //insere o html da friendlist
     function addRowF(lista) {
 
-        const div2 = document.createElement('div');
+        const div2 = document.createElement('div');//criaçao da tag div numa variavel
 
-        div2.className = 'FriendL';
-
+        div2.className = 'FriendL';//adiçao de class á varivel que é uma div
+        //inserimento do html dentro da div criada
         div2.innerHTML = "<p class='achivsiz'>" + lista["Gamertag"] + "</p>" + "<img class='achiev_img' src='" + lista["AppDisplayPicRaw"] + "'> ";
-
+        //junçao da div criada em cima com o i id criado no ficheiro do html
         document.getElementById('Friendlist').appendChild(div2);
     }
 
@@ -236,7 +245,7 @@ window.onload = function () {
 
 
 
-
+//codigo que serve para ajudar a perceber melhor o que aconteçia de fundo e exemplos
 
 // 0: Object { xuid: 2535432854101579, state: "Online", devices: (1)[…] }
 
