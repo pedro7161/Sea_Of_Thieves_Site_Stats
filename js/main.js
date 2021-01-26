@@ -78,7 +78,7 @@ window.onload = function () {
 
             method: 'GET',
             headers: {
-                "X-AUTH": "428606bdf1acf3c18578a9242bf09d3680f4c661"
+                "X-AUTH": "APIKEY"
             },
         });
 
@@ -243,61 +243,5 @@ window.onload = function () {
 }
 
 
-
-
-//codigo que serve para ajudar a perceber melhor o que aconteçia de fundo e exemplos
-
-// 0: Object { xuid: 2535432854101579, state: "Online", devices: (1)[…] }
-
-// 1: Object { numItems: 35, pollingToken: 8585943518858376000, pollingIntervalSeconds: 900, … }
-
-// 2: Array(11)[{ … }, { … }, { … }, … ]
-
-// length: 3
-
-// /v2/profile
-
-
-// (async () => {
-//     const rawResponse = await fetch('https://httpbin.org/post', {
-//         method: 'POST',
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             a: 1,
-//             b: 'Textual content'
-//         })
-//     });
-//     const content = await rawResponse.json();
-//     console.log(content);
-// });
-
-// object.onchange = function(){myScript};
-
-//var username = tomas1207
-
-// xuid/{gamertag}
-
-
-// 2535432854101579 user
-// 1717113201   title id
-
-// 2535432854101579 user
-// 1717113201   title id
-
-
-// $.ajax({
-
-//     url: (baseurl + endpoint),
-
-//     headers: {
-//         "X-AUTH": "428606bdf1acf3c18578a9242bf09d3680f4c661"
-//     }
-
-// }).done(function (response) {
-
-//     console.log(response);
 
 
